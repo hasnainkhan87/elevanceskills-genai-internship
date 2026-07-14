@@ -38,7 +38,7 @@ getting slower as the dataset grows.
 A: _As promised we will give you a 100% refund based on the guidelines
 (please refer to our course refund policy before enrolling)._
 
-<img width="1512" height="787" alt="image" src="https://github.com/user-attachments/assets/02c78ed6-798d-441c-88b7-fac78fca2c0f" />
+<img width="1546" height="784" alt="image" src="https://github.com/user-attachments/assets/ad7920ae-3baf-4f19-8231-92a4429b3d28" />
 
 ### 2. No hallucination on missing information
 
@@ -48,7 +48,7 @@ A: _I don't know._
 A topic genuinely absent from the FAQ dataset — the chatbot correctly
 declined instead of inventing an answer.
 
-**[ DROP SCREENSHOT HERE — "I don't know" answer for JavaScript question ]**
+<img width="1512" height="787" alt="image" src="https://github.com/user-attachments/assets/02c78ed6-798d-441c-88b7-fac78fca2c0f" />
 
 ### 3. The dynamic update mechanism — before / after (core proof of this task)
 
@@ -70,7 +70,8 @@ _(this FAQ exists ONLY because the automatic scheduler picked up a
 self-written test file, `my_test.csv` — it was never part of the original
 dataset)_
 
-**[ DROP SCREENSHOT HERE — refund window question answered correctly ]**
+<img width="1512" height="800" alt="image" src="https://github.com/user-attachments/assets/57657f49-34fb-4f36-b88a-cd3df829017f" />
+
 _(this is the single strongest screenshot for this task, since a correct
 answer here proves the whole dynamic-update loop, not just that Gemini
 can answer FAQs in general — re-capture after fixing the manifest desync
@@ -124,8 +125,8 @@ index back to 76 FAQs, the very next scheduler check correctly
 re-detected both `new_sources/` files and brought the total back to 80,
 with zero manual intervention.
 
-**[ DROP SCREENSHOT HERE — sidebar activity log showing full rebuild +
-incremental check history ]**
+<img width="537" height="972" alt="image" src="https://github.com/user-attachments/assets/183eb6da-211c-43cc-ab95-40e3fdbb1b09" />
+
 
 ## Known limitations
 
