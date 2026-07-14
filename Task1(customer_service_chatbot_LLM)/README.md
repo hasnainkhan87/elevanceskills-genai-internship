@@ -38,7 +38,7 @@ getting slower as the dataset grows.
 A: _As promised we will give you a 100% refund based on the guidelines
 (please refer to our course refund policy before enrolling)._
 
-**[ DROP SCREENSHOT HERE — baseline answer + sidebar showing 80 docs ]**
+<img width="1512" height="787" alt="image" src="https://github.com/user-attachments/assets/02c78ed6-798d-441c-88b7-fac78fca2c0f" />
 
 ### 2. No hallucination on missing information
 
