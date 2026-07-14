@@ -1,0 +1,103 @@
+SETUP INSTRUCTIONS — TASK 6 (built on top of Task 5)
+========================================================
+
+This folder is a COMPLETE, STANDALONE copy — it does not depend on your
+task1/ or task5/ folders. It includes everything Task 1 and Task 5 had,
+PLUS the new multilingual + conversation-memory features for Task 6.
+
+---------------------------------------------------------------
+SETUP:
+---------------------------------------------------------------
+
+1. cd into this folder:
+       cd task6
+
+2. Create your .env file with your real Gemini API key:
+       GOOGLE_API_KEY=your_actual_key_here
+
+   (Same key as task1/task5 is fine — see earlier chat history for why.
+   On Windows PowerShell, avoid `Out-File -Encoding utf8` for this —
+   it silently adds a BOM that breaks python-dotenv. Use:
+       [System.IO.File]::WriteAllText(".env", "GOOGLE_API_KEY=your_key", [System.Text.Encoding]::ASCII)
+   instead, or a code editor that saves plain ASCII/UTF-8 WITHOUT BOM.)
+
+3. Install dependencies:
+       pip install -r requirements.txt
+
+   New for Task 6: `langdetect` (language detection, runs locally) and
+   `deep-translator` (free translation, used ONLY for non-English
+   sentiment scoring — not for retrieval).
+
+4. Run the app:
+       streamlit run src/main.py
+
+5. Click "Create Knowledgebase (full rebuild)" once — same as before,
+   builds a fresh faiss_index/ for this folder.
+
+---------------------------------------------------------------
+HOW TO ACTUALLY TEST TASK 6'S FEATURES:
+---------------------------------------------------------------
+
+Try this sequence in the app (it tests memory + language switching
+together, which is the hardest requirement to demonstrate):
+
+  1. Ask: "Do you have a JavaScript course?"
+     -> plain English answer, "Detected language: English"
+
+  2. Ask (without repeating "JavaScript course"):
+     "क्या यह शुरुआती लोगों के लिए अच्छा है?"
+     (= "Is it good for beginners?")
+     -> should correctly understand "it" = the JavaScript course from
+        step 1, AND answer back in Hindi
+
+  3. Ask: "Et le prix ?" (= "And the price?")
+     -> third language in three turns, still using memory from step 1
+
+  4. Ask: "Do you offer EMI payments? मुझे EMI चाहिए"
+     -> should show "⚠️ mixed-language input detected"
+
+  5. Ask something clearly negative in Hindi, e.g.:
+     "यह कोर्स बहुत निराशाजनक है"
+     -> should show BOTH a detected tone AND detected language caption
+
+Take screenshots of each step for your README's "Verification" section
+— the README has a placeholder asking for exactly this.
+
+Run the local evaluation script (no API key needed for this part):
+       python src/demo_multilingual.py
+
+This prints real, captured accuracy numbers (87.5% on the language
+detection test set) and shows you the exact prompt instructions built
+for each language — useful to read through once before testing live.
+
+---------------------------------------------------------------
+WHAT'S DIFFERENT FROM task5/:
+---------------------------------------------------------------
+
+- main.py now uses a DIFFERENT chain type (ConversationalRetrievalChain
+  instead of RetrievalQA) — this is what enables memory across turns.
+- Conversation memory is stored in st.session_state, so it persists
+  across questions in the same browser session, but resets if you
+  restart the Streamlit app or click "🗑️ Reset conversation" in the
+  sidebar.
+- sentiment_helper.py gained an optional source_language parameter —
+  task5/'s version still works exactly the same way if you compare them
+  side by side, this is a backward-compatible addition, not a rewrite.
+- Two new files: multilingual_helper.py and multilingual_chain.py.
+- One new demo/eval script: demo_multilingual.py.
+
+---------------------------------------------------------------
+KNOWN LIMITATIONS (also documented in detail in README.md):
+---------------------------------------------------------------
+
+- langdetect can misclassify very short text (caught one real example:
+  a short Spanish question was misdetected as German).
+- langdetect cannot detect mixed-language input on its own — a separate
+  Unicode-script check (detect_mixed_script) catches the common
+  Hindi+Latin-script mixing case, but isn't a full code-switching
+  detector.
+- The empathetic/upbeat sentiment prefixes are still English-only, even
+  when the rest of the answer is in Hindi/Spanish/French.
+- deep-translator's free translation wrapper isn't guaranteed 100%
+  uptime — sentiment detection falls back to scoring the untranslated
+  text if translation fails, rather than crashing.

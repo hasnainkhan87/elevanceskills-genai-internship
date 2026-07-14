@@ -1,0 +1,6 @@
+.env
+faiss_index/
+medquad/
+dataset/medquad_dataset.csv
+__pycache__/
+*.pyc

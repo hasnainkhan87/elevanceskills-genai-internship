@@ -1,0 +1,6 @@
+.env
+faiss_index/
+dataset/arxiv_cs_sample.csv
+arxiv-metadata-oai-snapshot.json
+__pycache__/
+*.pyc

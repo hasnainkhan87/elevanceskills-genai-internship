@@ -1,0 +1,23 @@
+# Core LangChain (pinned to the 0.3.x line — same as Task 1)
+langchain>=0.3,<0.4
+langchain-community>=0.3,<0.4
+langchain-core>=0.3,<0.4
+# Gemini — used ONLY for Task 1's retrieval/embeddings in this task,
+# NOT for vision (see groq below for that).
+langchain-google-genai>=2.0,<3.0
+google-generativeai>=0.8.0
+# Vector store (reused from Task 1, no changes)
+faiss-cpu==1.8.0
+# App
+streamlit>=1.38.0
+python-dotenv==1.0.1
+# Periodic incremental knowledge-base updates (reused from Task 1)
+schedule==1.2.2
+
+# --- Task 2 specific ---
+# Groq SDK — used for vision (image analysis) and the final answer
+# generation step. A SEPARATE provider from Gemini above; see README
+# for why two providers are used in this task specifically (mentor-
+# approved architecture change, motivated by Gemini's restrictive free
+# tier hit during Task 6 development).
+groq>=0.9.0

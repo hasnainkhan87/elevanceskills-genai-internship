@@ -1,0 +1,6 @@
+.env
+faiss_index/
+kb_manifest.json
+kb_update.log
+__pycache__/
+*.pyc

@@ -1,0 +1,38 @@
+# Core LangChain (pinned to the 0.3.x line — verified working with this code.
+# IMPORTANT: langchain 1.x removed `langchain.chains.RetrievalQA` and
+# `langchain.prompts` entirely as part of a major restructure, so an
+# unbounded `langchain>=0.3.0` would silently break this project the moment
+# 1.x is released to pip. Stay on 0.3.x unless you also rewrite the chains
+# to use the newer LCEL-style retrieval chain.)
+langchain>=0.3,<0.4
+langchain-community>=0.3,<0.4
+langchain-core>=0.3,<0.4
+# Gemini (replaces deprecated GooglePalm + the now-shutdown text-embedding-004)
+langchain-google-genai>=2.0,<3.0
+google-generativeai>=0.8.0
+# Vector store
+faiss-cpu==1.8.0
+# App
+streamlit>=1.38.0
+python-dotenv==1.0.1
+# Periodic incremental knowledge-base updates
+schedule==1.2.2
+# Task 5: sentiment-aware responses (lexicon-based, no model download needed)
+vaderSentiment==3.3.2
+# Task 6: language detection (runs locally, no API calls)
+langdetect==1.0.9
+# Task 6: translation for non-English sentiment scoring only — NOT used
+# for retrieval (retrieval uses gemini-embedding-001's native multilingual
+# support directly). Free, unofficial wrapper around Google Translate's
+# web interface — no API key needed, but not guaranteed 100% uptime (see
+# README "Known Limitations"). If this becomes unreliable, sentiment
+# detection on non-English text gracefully falls back to scoring the
+# untranslated text rather than crashing.
+deep-translator==1.11.4
+# NOTE: HuggingFaceInstructEmbeddings / sentence-transformers / InstructorEmbedding
+# are no longer needed now that embeddings come from the free Gemini API instead
+# of a locally-downloaded ~1.5GB instructor-large model.
+# NOTE: if you switch sentiment_helper.py to the optional Hugging Face backend
+# (detect_sentiment_huggingface), you'll additionally need:
+#   transformers>=4.40
+#   torch>=2.0
