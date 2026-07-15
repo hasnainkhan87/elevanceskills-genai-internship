@@ -21,11 +21,11 @@ Every task below extends this same architecture with a new capability, reusing t
 
 | Task | Folder | What it adds |
 |---|---|---|
-| **1** | [`Task1(customer_service_chatbot_LLM)/`](./Task1(customer_service_chatbot_LLM)) | Dynamic, incremental knowledge base updates — new FAQs are embedded and merged into the FAISS index without ever rebuilding it from scratch |
-| **2** | [`Task2(multi_model_text_image)/`](./Task2(multi_model_text_image)) | Multi-modal support — students can upload an image (screenshot, course material) and get an answer grounded in both the image and the FAQ knowledge base, with explicit ambiguity handling and response validation |
+| **1** | [`Task1(customer_service_chatbot_LLM)/`](./Task1(customer_service_chatbot_LLM)) | Dynamic, incremental knowledge base updates  new FAQs are embedded and merged into the FAISS index without ever rebuilding it from scratch |
+| **2** | [`Task2(multi_model_text_image)/`](./Task2(multi_model_text_image)) | Multi-modal support  students can upload an image (screenshot, course material) and get an answer grounded in both the image and the FAQ knowledge base, with explicit ambiguity handling and response validation |
 | **3** | [`Task3(medical_q&n_chatbot)/`](./Task3(medical_q&n_chatbot)) | A specialized medical Q&A chatbot built on the MedQuAD dataset, with basic medical entity recognition (symptoms/diseases/treatments) |
 | **4** | [`Task4(arXiv_chatbot)/`](./Task4(arXiv_chatbot)) | A domain-expert chatbot trained on a computer science subset of the arXiv papers dataset, for discussing and summarizing research topics |
-| **5** | [`Task5(sentimental_delivery)/`](./Task5(sentimental_delivery)) | Sentiment-aware responses — detects positive/negative/neutral tone in a question and frames the answer's empathy accordingly, without altering the underlying facts |
+| **5** | [`Task5(sentimental_delivery)/`](./Task5(sentimental_delivery)) | Sentiment-aware responses  detects positive/negative/neutral tone in a question and frames the answer's empathy accordingly, without altering the underlying facts |
 | **6** | [`Task6(multilingual_chatbot)/`](./Task6(multilingual_chatbot)) | Multilingual conversation support (English, Hindi, Spanish, French) with memory across turns and language switches, building on Task 5's sentiment layer |
 
 Each task folder is a **complete, independently runnable project** — you can `cd` into any one of them and run it on its own without needing the others.
